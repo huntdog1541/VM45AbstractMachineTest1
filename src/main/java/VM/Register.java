@@ -9,38 +9,38 @@ public class Register
     private boolean isFlag;
     private BitSet bitSet;
     private String bitString;
-    private int MaxValue;
+    private boolean isSigned;
     private int value;
 
-    public Register(String name, int size, boolean isFlag)
+    public Register(String name, int size, boolean signed, boolean isFlag)
     {
-        setUpRegister(name, size, 0, isFlag);
+        setUpRegister(name, size, 0, signed, isFlag);
     }
 
-    public Register(String name, int size, int value, boolean isFlag)
+    public Register(String name, int size, int value, boolean signed, boolean isFlag)
     {
-        setUpRegister(name, size, value, isFlag);
+        setUpRegister(name, size, value, signed, isFlag);
     }
 
-    private void setUpRegister(String name, int size, int value, boolean isFlag)
+    private void setUpRegister(String name, int size, int value, boolean signed, boolean isFlag)
     {
         this.name = name;
         this.size = size;
         this.bitSet = new BitSet(size);
+        this.isSigned = signed;
         clearRegister();
         if(value != 0)
         {
             setValue(value);
         }
         this.isFlag = isFlag;
-        MaxValue = (int) Math.pow(2, this.size);
     }
 
     public void setValue(int value)
     {
+        clearRegister();
         int tempValue = value;
         boolean setRestZeros = false;
-        int remainder = 0;
         for(int i = size; i > 0; i--)
         {
             if (!setRestZeros)
@@ -71,25 +71,25 @@ public class Register
     public void printRegister()
     {
         System.out.println("Register: " + this.name);
-        setCharArray();
+        createString();
         System.out.println(bitString);
     }
 
-    private void setCharArray()
+    private void createString()
     {
         StringBuilder builder = new StringBuilder(this.size);
-        for(int i = 0; i < this.size; i++)
+        for(int i = 1; i <= this.size; i++)
         {
             if(bitSet.get(i))
             {
-                builder.append("1");
+                builder.append('1');
             }
             else
             {
-                builder.append("0");
+                builder.append('0');
             }
         }
-        bitString = insertPeriodically(builder.toString(), "-", 4);
+        bitString = insertPeriodically(builder.reverse().toString(), "-", 4);
     }
 
     public String insertPeriodically(String text, String insert, int period)
@@ -150,8 +150,13 @@ public class Register
         return this.bitSet;
     }
 
-    public int getMaxValue()
+    public int getSize()
     {
-        return this.MaxValue;
+        return size;
+    }
+
+    public boolean isSigned()
+    {
+        return isSigned;
     }
 }
