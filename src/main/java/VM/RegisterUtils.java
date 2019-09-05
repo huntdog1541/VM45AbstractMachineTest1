@@ -3,8 +3,6 @@ package VM;
 import java.util.HashMap;
 import java.util.Map;
 
-import VM.Register;
-
 public class RegisterUtils {
 
     private static RegisterUtils instance = new RegisterUtils();
@@ -37,17 +35,6 @@ public class RegisterUtils {
         }
     }
 
-    public void addRegister(Register reg)
-    {
-        registerHashMap.put(reg.getName(), reg);
-    }
-
-    public Register getRegister(String regName)
-    {
-        return registerHashMap.get(regName);
-    }
-
-
     public static int getUpperLimit(Register reg)
     {
         if(reg.isSigned())
@@ -58,6 +45,16 @@ public class RegisterUtils {
         {
             return RegisterUtils.getPossibleValues(reg) - 1;
         }
+    }
+
+    public void addRegister(Register reg)
+    {
+        registerHashMap.put(reg.getName(), reg);
+    }
+
+    public Register getRegister(String regName)
+    {
+        return registerHashMap.get(regName);
     }
 
     public static void setValue(Register reg, int value)
