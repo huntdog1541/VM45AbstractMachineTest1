@@ -8,7 +8,8 @@ public class Main
     {
         System.out.println("Hello World!");
         VM vm = VM.getVmInstance();
-        System.out.println(vm.getResponse());
+        RegisterUtils registerUtils = RegisterUtils.getInstance();
+        /*System.out.println(vm.getResponse());
         int answer = (int)Math.pow(2, 3);
         System.out.println("Answer: " + answer);
         Register register = new Register("EAX", 8, true, false);
@@ -17,7 +18,6 @@ public class Main
         System.out.println("Possible Value: " + RegisterUtils.getPossibleValues(register));
         System.out.println("Lower limit: " + RegisterUtils.getLowerLimit(register));
         System.out.println("Upper limit: " + RegisterUtils.getUpperLimit(register));
-        System.out.println("Test String: " + register.getTest());
         RegisterUtils.setValue(register, 15);
         register.printRegister();
         RegisterUtils.setValue(register, 2000);
@@ -36,7 +36,13 @@ public class Main
         register2.printRegister();
         RegisterUtils.setValue(register2, 255);
         System.out.println("255:");
-        register2.printRegister();
+        register2.printRegister();*/
 
+        registerUtils.createRegisters();
+        Register eax = registerUtils.getRegister("EAX");
+        eax.setValue(32);
+        eax.printRegister();
+
+        registerUtils.printRegisters();
     }
 }

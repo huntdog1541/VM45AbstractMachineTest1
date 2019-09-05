@@ -70,9 +70,17 @@ public class Register
 
     public void printRegister()
     {
-        System.out.println("Register: " + this.name);
+        System.out.print("Register: " + this.name + "\t");
         createString();
         System.out.println(bitString);
+    }
+
+    public void printRegisterDetails()
+    {
+        System.out.print("Register: " + this.name + "\t");
+        createString();
+        System.out.println(bitString + " Value: " + getIntegerValue());
+
     }
 
     private void createString()
@@ -89,7 +97,7 @@ public class Register
                 builder.append('0');
             }
         }
-        bitString = insertPeriodically(builder.reverse().toString(), "-", 4);
+        bitString = insertPeriodically(builder.reverse().toString(), " ", 4);
     }
 
     public String insertPeriodically(String text, String insert, int period)
@@ -124,7 +132,7 @@ public class Register
         {
             if(bitSet.get(i))
             {
-                answer += Math.pow(2.0, i);
+                answer += Math.pow(2.0, i-1);
             }
         }
         return answer;
