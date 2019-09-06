@@ -11,4 +11,10 @@ public class EAXRegister extends RegisterFunction {
     {
         super(0, "EAX", size, signed);
     }
+
+    public EAXRegister(int value, int size, boolean signed)
+    {
+        super(value, "EAX", size, signed);
+    }
+
 }

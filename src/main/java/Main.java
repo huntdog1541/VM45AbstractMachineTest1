@@ -53,11 +53,19 @@ public class Main
         String bin = eax.getBinaryString();
         System.out.println("EAX: " + bin);
         System.out.println(PrintUtils.getFormattedString(bin, 4, " "));
-        String hex = Converter.generateHexString(50, 32);
+        String hex = Converter.generateHexString(50, 32, true);
         System.out.println("Hex: " + hex);
+        int hexNumber = Converter.generateHexValue(50, 32);
+        System.out.println("Hex Number: " + hexNumber);
+
+        System.out.println("--------------------------------------");
+        System.out.println("Floating point number");
+        System.out.println(Float.intBitsToFloat(0x7fffff));
+        System.out.println("\n\n");
+        testFunctionality2();
     }
 
-    /*public static void testFuntionality()
+    public static void testFuntionality()
     {
         StringBuilder builder = new StringBuilder();
         int register = -44;
@@ -74,5 +82,55 @@ public class Main
             builder.append(temp == mask? "1" : "0");
         }
         System.out.println(builder.reverse().toString());
+    }
+
+    public static void testFunctionality2()
+    {
+        /*StringBuilder builder = new StringBuilder();
+        double register = 3.05;
+        double temp = 0;
+        int mask = 1;
+        temp = register & mask;*/
+        int floatValue = Float.floatToRawIntBits((float) 3.05);
+        String floatBinary = Integer.toBinaryString(floatValue);
+        if(floatValue < 0)
+        {
+            floatBinary = "1".concat(floatBinary);
+        }
+        else
+        {
+            floatBinary = "0".concat(floatBinary);
+        }
+        System.out.println("Float: " + floatBinary);
+        System.out.println("Signed bit: " + PrintUtils.getBinaryPosition(floatBinary, 32, 31, 32));
+        String signedString = floatBinary.substring(0, 1);
+        String exponentString = floatBinary.substring(1, 8);
+        String mantissaString = floatBinary.substring(8, 32);
+        System.out.println("Signed: " + floatBinary.substring(0, 1) +" Value: " + Integer.parseInt(signedString));
+        System.out.println("Exponent: " + floatBinary.substring(1, 8) + " Value: " + Integer.parseInt(exponentString));
+        System.out.println("Mantissa: " + floatBinary.substring(8, 32));
+        //mantissaString = mantissaString.replaceFirst("^0*", "");
+        System.out.println("Mantissa string with leading zeros | " + PrintUtils.getFormattedString(mantissaString, 4, " "));
+        Converter.getNumberFromBinaryString(mantissaString);
+        //long mantissa = Long.parseLong(mantissaString);
+        //System.out.println("Mantissa value: " + mantissa);
+        System.out.println(floatBinary.length());
+    }
+
+
+
+/*    private void generateBinaryString()
+    {
+        StringBuilder builder = new StringBuilder();
+        int mask = 1, temp = 0, i = 0;
+        temp = value & mask;
+        builder.append(temp == mask? "1" : "0");
+        for(i = 1; i < size; i++)
+        {
+            mask = mask << 1;
+            temp = value & mask;
+            builder.append(temp == mask? "1" : "0");
+        }
+        binaryString = builder.reverse().toString();
     }*/
 }

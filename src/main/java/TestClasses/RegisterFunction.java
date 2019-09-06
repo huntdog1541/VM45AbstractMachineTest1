@@ -21,6 +21,7 @@ public abstract class RegisterFunction {
         generateBinaryString();
     }
 
+
     private void generateBinaryString()
     {
         StringBuilder builder = new StringBuilder();
@@ -107,4 +108,5 @@ public abstract class RegisterFunction {
     {
         return binaryString;
     }
+
 }
