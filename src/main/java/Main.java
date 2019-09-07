@@ -63,6 +63,32 @@ public class Main
         System.out.println(Float.intBitsToFloat(0x7fffff));
         System.out.println("\n\n");
         testFunctionality2();
+        testFunctionality3();
+
+    }
+
+    public static void testFunctionality3()
+    {
+        System.out.println("Testing Binary Integer Functions");
+        int number = 15;
+        String binaryString = Integer.toBinaryString(number);
+        System.out.println("BinaryString: " + binaryString + " size: " + binaryString.length());
+        System.out.println("Leading Zeros: " + Integer.numberOfLeadingZeros(number));
+        System.out.println("Trailing Zeros: " + Integer.numberOfTrailingZeros(number));
+        String binaryStringWithLeadingZeros = appendLeadingZeros(binaryString, number);
+        System.out.println("Binary String: " + binaryStringWithLeadingZeros + " size: " + binaryStringWithLeadingZeros.length());
+    }
+
+    public static String appendLeadingZeros(String bin, int value)
+    {
+        StringBuilder builder = new StringBuilder();
+        int i, limit = Integer.numberOfLeadingZeros(value);
+        for(i = 0; i < limit; i++)
+        {
+            builder.append("0");
+        }
+        builder.append(bin);
+        return builder.toString();
     }
 
     public static void testFuntionality()
@@ -91,8 +117,9 @@ public class Main
         double temp = 0;
         int mask = 1;
         temp = register & mask;*/
-        int floatValue = Float.floatToRawIntBits((float) 3.05);
+        int floatValue = Float.floatToRawIntBits((float) -3.05);
         String floatBinary = Integer.toBinaryString(floatValue);
+        System.out.println("Original Raw Bits:" + floatBinary + " size: " + floatBinary.length());
         if(floatValue < 0)
         {
             floatBinary = "1".concat(floatBinary);
