@@ -112,6 +112,7 @@ public class Main
 
     public static void testFunctionality2()
     {
+        System.out.println("Testing functionality - 2");
         /*StringBuilder builder = new StringBuilder();
         double register = 3.05;
         double temp = 0;
@@ -138,7 +139,9 @@ public class Main
         System.out.println("Mantissa: " + floatBinary.substring(8, 32));
         //mantissaString = mantissaString.replaceFirst("^0*", "");
         System.out.println("Mantissa string with leading zeros | " + PrintUtils.getFormattedString(mantissaString, 4, " "));
-        Converter.getNumberFromBinaryString(mantissaString);
+        System.out.println("Mantissa: " + Converter.getNumberFromBinaryString(mantissaString));
+        System.out.println("Exponent: " + Converter.getNumberFromBinaryString(exponentString));
+        System.out.println("Signed: "  + Converter.getNumberFromBinaryString(signedString));
         //long mantissa = Long.parseLong(mantissaString);
         //System.out.println("Mantissa value: " + mantissa);
         System.out.println(floatBinary.length());

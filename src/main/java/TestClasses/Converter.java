@@ -74,7 +74,7 @@ public class Converter {
         int size = binary.length();
         System.out.println("Binary size: " + size);
 
-        Long lg = 0L;
+        Long lg = (long)Integer.parseInt(binary, 2);
         return lg;
     }
 }
